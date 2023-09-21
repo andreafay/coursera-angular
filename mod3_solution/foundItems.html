@@ -1,0 +1,5 @@
+<ul class="result">
+  <li  ng-repeat="item in items">{{item.name}}, {{ item.short_name}} <br/> {{ item.description}}
+    <button class="btn btn-default" ng-click="onRemove({index: $index});">Don't want this one!</button></li>
+</ul>
+<div class="error" ng-hide="items.length">Nothing found</div>
