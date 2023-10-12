@@ -1,0 +1,18 @@
+<div class="container" ng-hide="userInfoCtrl.user">
+  Not signed up yet. <a ui-sref="public.signup">Sign up now!</a>
+</div>
+<div class="container" ng-show="userInfoCtrl.user">
+  <div class="row">
+    <div class="col-md-3">
+      <p>Hello {{ userInfoCtrl.user.firstName }} {{ userInfoCtrl.user.lastName }}</p>
+      <p>Your phone number is {{ userInfoCtrl.user.phone }}</p>
+      <p>Your e-mail is {{ userInfoCtrl.user.email }}</p>
+    </div>
+    <div class="col-md-2">
+      <p class="text-right">Your favorite dish:</p>
+    </div>
+    <menu-item menu-item="userInfoCtrl.user.favorite"
+      category-short-name="userInfoCtrl.user.favorite.categoryShortName">
+    </menu-item>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<h2 class="text-center">Sign up for our newsletter!</h2>
+<form class="form-horizontal" name='regForm' novalidate>
+  <fieldset>
+    <div class="form-group" ng-class="{'has-error': (regForm.inputFirstName.$error.minlength || regForm.inputFirstName.$error.required) && regForm.inputFirstName.$touched}">
+        <label for="inputFirstName" class="col-sm-2 col-lg-4 control-label">First name</label>
+        <div class="col-sm-10 col-lg-4">
+            <input
+                  class="form-control"
+                  name="inputFirstName"
+                  placeholder="First name"
+                  required
+                  minlength="3"
+                  ng-model="signUpCtrl.user.firstName">
+            <span
+                  ng-if="(regForm.inputFirstName.$error.minlength || regForm.inputFirstName.$error.required) && regForm.inputFirstName.$touched"
+                  class="help-block">
+              Must be at least 3 characters long
+            </span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': (regForm.inputLastName.$error.minlength || regForm.inputLastName.$error.required) && regForm.inputLastName.$touched}">
+        <label for="inputLastName" class="col-sm-2 col-lg-4 control-label">Last name</label>
+        <div class="col-sm-10 col-lg-4">
+            <input
+                  class="form-control"
+                  name="inputLastName"
+                  placeholder="Last name"
+                  required
+                  minlength="3"
+                  ng-model="signUpCtrl.user.lastName">
+            <span
+                  ng-if="(regForm.inputLastName.$error.minlength || regForm.inputLastName.$error.required) && regForm.inputLastName.$touched"
+                  class="help-block">
+              Must be at least 3 characters long
+            </span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': regForm.inputPhone.$invalid && regForm.inputPhone.$touched }">
+      <label for="inputPhone" class="col-sm-2 col-lg-4 control-label">Phone</label>
+      <div class="col-sm-10 col-lg-4">
+        <input
+                  type="tel"
+                  class="form-control"
+                  name="inputPhone"
+                  placeholder="###-###-####"
+                  required
+                  pattern="\d{3}-\d{3}-\d{4}"
+                  ng-model="signUpCtrl.user.phone">
+        <span ng-if="regForm.inputPhone.$invalid && regForm.inputPhone.$touched" class="help-block">
+          Not a valid phone number (use format ###-###-####)
+        </span>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': regForm.inputEmail.$invalid && regForm.inputEmail.$touched }">
+      <label for="inputEmail" class="col-sm-2 col-lg-4 control-label">Email</label>
+      <div class="col-sm-10 col-lg-4">
+        <input
+                  type="email"
+                  class="form-control"
+                  name="inputEmail"
+                  placeholder="Email"
+                  required
+                  ng-model="signUpCtrl.user.email">
+        <span ng-if="regForm.inputEmail.$invalid && regForm.inputEmail.$touched" class="help-block">
+          Not a valid email address
+        </span>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': signUpCtrl.favoriteError }">
+      <label for="inputFavorite" class="col-sm-2 col-lg-4 control-label">Favorite dish</label>
+      <div class="col-sm-10 col-lg-4">
+        <input class="form-control" id="inputFavorite" placeholder="A1" required ng-model="signUpCtrl.dishShortName">
+        <span ng-show="signUpCtrl.favoriteError" class="help-block">{{signUpCtrl.favoriteError}}</span>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10 col-lg-offset-4 col-lg-4">
+            <button ng-disabled="regForm.$invalid" ng-click="signUpCtrl.submit()" type="submit" class="btn btn-default" ng-hide="signUpCtrl.registered">Sign up</button>
+            <span ng-show="signUpCtrl.registered">Thank you, {{ signUpCtrl.user.firstName }}! Your information has been saved.</span>
+        </div>
+    </div>
+  </fieldset>
+</form>
